@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinCrime 3.0 — Setup</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">FinCrime 3.0 <span>·</span> Synthetic Data Studio</div>
+    <nav>
+      <a href="/index.html" class="active">Setup</a>
+      <a href="/search.html">Search</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Setup</h1>
+    <p class="subtitle">
+      Connect to MongoDB Atlas, seed the FinCrime collections with synthetic data, then create
+      the regular indexes and Atlas Search indexes (the MongoDB equivalent of the Elasticsearch mappings).
+    </p>
+
+    <div class="card">
+      <h2>1 · Connection</h2>
+      <div class="field">
+        <label for="uri">MongoDB URI</label>
+        <input type="password" id="uri" placeholder="mongodb+srv://user:pass@cluster.mongodb.net" autocomplete="off" />
+        <div class="hint">Use an Atlas <code>mongodb+srv://</code> URI (or local Atlas) so Atlas Search indexes can be created.</div>
+      </div>
+      <div class="field">
+        <label for="dbName">Database name</label>
+        <input type="text" id="dbName" placeholder="fincrime" value="fincrime" autocomplete="off" />
+      </div>
+      <div class="actions">
+        <button class="btn btn-ghost" id="btnTest">Test connection</button>
+      </div>
+      <div class="status" id="statusConn"></div>
+    </div>
+
+    <div class="card">
+      <h2>2 · Create &amp; seed collections</h2>
+      <p class="subtitle" style="margin-bottom:16px;">
+        Creates all 10 collections and inserts synthetic, referentially-linked documents.
+        Existing documents are cleared first so this is safe to re-run.
+      </p>
+      <div class="actions">
+        <button class="btn btn-primary" id="btnSeed">Create &amp; seed collections</button>
+      </div>
+      <div class="status" id="statusSeed"></div>
+    </div>
+
+    <div class="card">
+      <h2>3 · Create indexes</h2>
+      <p class="subtitle" style="margin-bottom:16px;">
+        Regular b-tree indexes are created immediately. Atlas Search indexes build asynchronously and
+        require an Atlas cluster (or local Atlas with a search node).
+      </p>
+      <div class="actions">
+        <button class="btn btn-blue" id="btnIndexes">Create indexes</button>
+        <button class="btn btn-blue" id="btnSearchIndexes">Create Atlas Search indexes</button>
+      </div>
+      <div class="status" id="statusIndexes"></div>
+    </div>
+
+    <div class="card">
+      <h2>Inspect</h2>
+      <p class="subtitle" style="margin-bottom:16px;">Document counts and index status per collection.</p>
+      <div class="actions" style="margin-bottom:16px;">
+        <button class="btn btn-ghost" id="btnRefresh">Refresh stats</button>
+      </div>
+      <div id="statsWrap"><p class="muted">No stats loaded yet.</p></div>
+    </div>
+  </main>
+
+  <script src="/js/setup.js"></script>
+</body>
+</html>

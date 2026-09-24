@@ -1,0 +1,16 @@
+{
+  "name": "fincrime-synthetic-app",
+  "version": "1.0.0",
+  "description": "Synthetic data generator and Atlas Search index provisioner for FinCrime 3.0 collections (modelled from the Elasticsearch index reference).",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.0.0",
+    "express": "^4.19.2",
+    "mongodb": "^6.9.0"
+  }
+}

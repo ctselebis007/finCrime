@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinCrime 3.0 — Search</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">FinCrime 3.0 <span>·</span> Synthetic Data Studio</div>
+    <nav>
+      <a href="/index.html">Setup</a>
+      <a href="/search.html" class="active">Search</a>
+    </nav>
+  </header>
+
+  <div class="searchbar">
+    <div class="searchbar-inner">
+      <div class="search-input-wrap">
+        <input type="text" id="q" placeholder="Search cases, entities, documents, tasks…" autocomplete="off" />
+        <div class="ac-dropdown" id="acDropdown"></div>
+      </div>
+      <button class="btn btn-primary" id="btnSearch">Search</button>
+      <label class="pipe-toggle" title="Show the exact aggregation pipeline executed">
+        <input type="checkbox" id="pipeToggle" /> Show pipeline
+      </label>
+      <button class="btn btn-ghost" id="btnConn" title="Connection">⚙</button>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="all">All</button>
+      <button class="tab" data-tab="cases">Cases</button>
+      <button class="tab" data-tab="entities">Entities</button>
+      <button class="tab" data-tab="documents">Documents</button>
+      <button class="tab" data-tab="tasks">Tasks</button>
+      <button class="tab" data-tab="audit">Audit</button>
+    </div>
+  </div>
+
+  <div class="conn-panel" id="connPanel">
+    <div class="row">
+      <div class="field">
+        <label for="uri">MongoDB URI</label>
+        <input type="password" id="uri" placeholder="mongodb+srv://…" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="dbName">Database name</label>
+        <input type="text" id="dbName" placeholder="fincrime" />
+      </div>
+    </div>
+    <div class="actions"><button class="btn btn-ghost" id="btnSaveConn">Save</button></div>
+  </div>
+
+  <main class="search-layout">
+    <aside class="facet-rail" id="facetRail"></aside>
+    <section class="results" id="results">
+      <div class="empty-state">
+        <h1>Search</h1>
+        <p class="muted">Enter a query above. Try an entity name, a case ID like <code>FC-</code>, or a document type.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="mltBackdrop">
+    <div class="modal">
+      <div class="modal-head">
+        <h2 id="mltTitle">Similar records</h2>
+        <button class="btn btn-ghost" id="mltClose">✕</button>
+      </div>
+      <div id="mltBody"></div>
+    </div>
+  </div>
+
+  <script src="/js/search.js"></script>
+</body>
+</html>
